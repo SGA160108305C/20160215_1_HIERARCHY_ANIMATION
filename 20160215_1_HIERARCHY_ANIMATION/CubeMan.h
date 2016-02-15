@@ -24,5 +24,6 @@ protected:
 	//위치와 이동, 회전
 	float moveSpeed = 10.0f;
 	float rotationSpeed = 2.0f;
+	bool isMoving = false;
 };
 

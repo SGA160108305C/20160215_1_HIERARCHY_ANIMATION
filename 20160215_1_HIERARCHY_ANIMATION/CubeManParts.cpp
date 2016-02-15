@@ -14,8 +14,10 @@ CubeManParts::~CubeManParts()
 void CubeManParts::Initialize(
 	D3DXVECTOR3& cubeSize /*= D3DXVECTOR3(1, 1, 1)*/, 
 	D3DXVECTOR3& pivot /*= D3DXVECTOR3(0, 0, 0)*/, 
-	D3DXVECTOR3& baseLocal /*= D3DXVECTOR3(0, 0, 0)*/)
+	D3DXVECTOR3& baseLocal /*= D3DXVECTOR3(0, 0, 0)*/,
+	bool* cubeManMoving /*=nullptr*/)
 {
+	isCubeManMoving = cubeManMoving;
 	const int VERTEX_COUNT = 8;
 	D3DXVECTOR3 vertex[VERTEX_COUNT];
 	vertex[0] = D3DXVECTOR3(
@@ -73,19 +75,26 @@ void CubeManParts::Update(D3DXMATRIX* parentWorldMatrix /*= nullptr*/)
 {
 	float tick = (float)GameManager::GetTick();
 
-
-	float maxAngle = D3DX_PI * 0.25f;
-	rotateX += (rotateSpeed * tick);
-
-	if (rotateX > maxAngle) 
+	if (*isCubeManMoving)
 	{
-		rotateX = maxAngle;
-		rotateSpeed *= -1.0f;
+		float maxAngle = D3DX_PI * 0.25f;
+		rotateX += (rotateSpeed * tick);
+
+		if (rotateX > maxAngle)
+		{
+			rotateX = maxAngle;
+			rotateSpeed *= -1.0f;
+		}
+		else if (rotateX < -maxAngle)
+		{
+			rotateX = -maxAngle;
+			rotateSpeed *= -1.0f;
+		}
 	}
-	else if (rotateX < -maxAngle)
+
+	else
 	{
-		rotateX = -maxAngle;
-		rotateSpeed *= -1.0f;
+		rotateX = 0.0f;
 	}
 
 	D3DXMATRIXA16 rot;

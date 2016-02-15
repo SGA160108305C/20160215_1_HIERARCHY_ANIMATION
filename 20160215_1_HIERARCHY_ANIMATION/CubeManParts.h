@@ -12,7 +12,8 @@ public:
 	void Initialize(
 		D3DXVECTOR3& cubeSize = D3DXVECTOR3(1, 1, 1), 
 		D3DXVECTOR3& pivot = D3DXVECTOR3(0, 0, 0), 
-		D3DXVECTOR3& baseLocal = D3DXVECTOR3(0, 0, 0));
+		D3DXVECTOR3& baseLocal = D3DXVECTOR3(0, 0, 0),
+		bool* cubeManMoving = nullptr);
 	void Destroy();
 	void Render();
 	void Update(D3DXMATRIX* parentWorldMatrix = nullptr);
@@ -35,5 +36,6 @@ protected:
 	float rotateSpeed = 0.0f;
 	float rotateX = 0.0f;
 
+	bool* isCubeManMoving = nullptr;
 };
 
