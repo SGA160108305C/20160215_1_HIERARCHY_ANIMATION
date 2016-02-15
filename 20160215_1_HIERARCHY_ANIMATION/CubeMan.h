@@ -22,7 +22,7 @@ protected:
 	CubeManParts* root = nullptr;
 	LPDIRECT3DTEXTURE9 texture;
 	//위치와 이동, 회전
-	float moveSpeed = 10.0f;
+	float moveSpeed = 0.1f;
 	float rotationSpeed = 2.0f;
 	bool isMoving = false;
 };

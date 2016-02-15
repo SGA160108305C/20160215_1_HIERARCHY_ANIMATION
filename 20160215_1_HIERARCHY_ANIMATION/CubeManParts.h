@@ -3,6 +3,16 @@
 #include "FVF.h"
 #include "Triangle.h"
 
+enum CubeManPartsType
+{
+	ROOT,
+	HEAD,
+	LEFT_ARM,
+	RIGHT_ARM,
+	LEFT_LEG,
+	RIGHT_LEG
+};
+
 class CubeManParts
 {
 public:
@@ -10,6 +20,7 @@ public:
 	~CubeManParts();
 
 	void Initialize(
+		CubeManPartsType type,
 		D3DXVECTOR3& cubeSize = D3DXVECTOR3(1, 1, 1), 
 		D3DXVECTOR3& pivot = D3DXVECTOR3(0, 0, 0), 
 		D3DXVECTOR3& baseLocal = D3DXVECTOR3(0, 0, 0),

@@ -17,35 +17,35 @@ void CubeMan::Initialize()
 
 
 	root = new CubeManParts;
-	root->Initialize(D3DXVECTOR3(1.0f, 2.0f, 1.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 3.0f, 0.0f), &isMoving);
+	root->Initialize(ROOT, D3DXVECTOR3(1.0f, 2.0f, 1.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 3.0f, 0.0f), &isMoving);
 
 	CubeManParts* head = new CubeManParts;
-	head->Initialize(D3DXVECTOR3(1.0f, 1.0f, 1.0f), D3DXVECTOR3(0.0f, -0.5f, 0.0f), D3DXVECTOR3(0.0f, 1.1f, 0.0f), &isMoving);
+	head->Initialize(HEAD, D3DXVECTOR3(1.0f, 1.0f, 1.0f), D3DXVECTOR3(0.0f, -0.5f, 0.0f), D3DXVECTOR3(0.0f, 1.1f, 0.0f), &isMoving);
 	root->AddChild(head);
 
 	CubeManParts* leftArm = new CubeManParts;
-	leftArm->Initialize(D3DXVECTOR3(0.5f, 2.0f, 0.5f), D3DXVECTOR3(0.0f, 1.0f, 0.0f), D3DXVECTOR3(-0.8f, 1.0f, 0.0f), &isMoving);
+	leftArm->Initialize(LEFT_ARM, D3DXVECTOR3(0.5f, 2.0f, 0.5f), D3DXVECTOR3(0.0f, 1.0f, 0.0f), D3DXVECTOR3(-0.8f, 1.0f, 0.0f), &isMoving);
 	leftArm->SetRotateSpeed(2.0f);
 	root->AddChild(leftArm);
 
 	CubeManParts* rightArm = new CubeManParts;
-	rightArm->Initialize(D3DXVECTOR3(0.5f, 2.0f, 0.5f), D3DXVECTOR3(0.0f, 1.0f, 0.0f), D3DXVECTOR3(0.8f, 1.0f, 0.0f), &isMoving);
+	rightArm->Initialize(RIGHT_ARM, D3DXVECTOR3(0.5f, 2.0f, 0.5f), D3DXVECTOR3(0.0f, 1.0f, 0.0f), D3DXVECTOR3(0.8f, 1.0f, 0.0f), &isMoving);
 	rightArm->SetRotateSpeed(-2.0f);
 	root->AddChild(rightArm);
 
 	CubeManParts* leftLeg = new CubeManParts;
-	leftLeg->Initialize(D3DXVECTOR3(0.5f, 2.0f, 0.8f), D3DXVECTOR3(0.0f, 1.0f, 0.0f), D3DXVECTOR3(-0.3f, -1.0f, 0.0f), &isMoving);
+	leftLeg->Initialize(LEFT_LEG, D3DXVECTOR3(0.5f, 2.0f, 0.8f), D3DXVECTOR3(0.0f, 1.0f, 0.0f), D3DXVECTOR3(-0.3f, -1.0f, 0.0f), &isMoving);
 	leftLeg->SetRotateSpeed(-2.0f);
 	root->AddChild(leftLeg);
 
 	CubeManParts* rigthLeg = new CubeManParts;
-	rigthLeg->Initialize(D3DXVECTOR3(0.5f, 2.0f, 0.8f), D3DXVECTOR3(0.0f, 1.0f, 0.0f), D3DXVECTOR3(0.3f, -1.0f, 0.0f), &isMoving);
+	rigthLeg->Initialize(RIGHT_LEG, D3DXVECTOR3(0.5f, 2.0f, 0.8f), D3DXVECTOR3(0.0f, 1.0f, 0.0f), D3DXVECTOR3(0.3f, -1.0f, 0.0f), &isMoving);
 	rigthLeg->SetRotateSpeed(2.0f);
 	root->AddChild(rigthLeg);
 
 	D3DXCreateTextureFromFile(
 		GameManager::GetDevice(),
-		L"./Data/Texture/Box.jpg",
+		L"./Data/Texture/minecraftskin.png",
 		&texture);	
 }
 
@@ -80,12 +80,12 @@ void CubeMan::Update()
 	if ((GetAsyncKeyState('W') & 0x8000) != 0)
 	{
 		isMoving = true;
-		position += (direction * moveSpeed * tick);
+		position += (direction * moveSpeed);
 	}
 	else if ((GetAsyncKeyState('S') & 0x8000) != 0)
 	{
 		isMoving = true;
-		position -= (direction * moveSpeed * tick);		
+		position -= (direction * moveSpeed);		
 	}
 	
 
